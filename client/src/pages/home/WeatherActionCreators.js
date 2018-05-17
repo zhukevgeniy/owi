@@ -76,3 +76,19 @@ export const searchCityRequest = userInputVal => {
 			: dispatch(setCompleteResultList(cityCompleteResultList));
 	};
 };
+
+export const addCityToUserList = (city) => {
+	return {
+		type: ActionTypes.ADD_CITY_TO_USER_LIST,
+		payload: {
+			city
+		}
+	}
+};
+
+export const addCityToUserList = (city) => {
+	return async dispatch => {
+		dispatch()
+
+	}
+};

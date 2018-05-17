@@ -1,0 +1,13 @@
+.location-container {
+  margin-top: 30vh;
+}
+
+
+.location-panel__wrapper {
+  margin-bottom: 10vh;
+
+}
+
+.location-panel__wrapper input[role="combobox"],.location-panel__wrapper .Select-value-label {
+  color: #000000 !important;
+}

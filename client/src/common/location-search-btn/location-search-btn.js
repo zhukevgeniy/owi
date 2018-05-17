@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getWeather } from "../../WeatherActionCreators";
+import { getWeather } from "../../pages/home/WeatherActionCreators";
 
 const LocationSearchBtn = props => {
 	const getCityWeather = () => props.dispatch(getWeather());

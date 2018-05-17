@@ -20,7 +20,7 @@ LazyRoute.propTypes = {
 
 export default (
 	<Switch>
-		<LazyRoute path={"/"} componentPath={"./pages/home/home-page"} />
+		<LazyRoute exact path={"/"} componentPath={"./pages/home/home-page"} />
 		<LazyRoute
 			exact
 			path={"/locations"}

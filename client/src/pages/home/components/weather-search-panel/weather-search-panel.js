@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Col} from "reactstrap";
-import LocationForm from "../location-form/location-form";
+import LocationForm from "../../../../common/location-form/location-form";
 
 class WeatherSearchPanel extends Component {
 	render() {

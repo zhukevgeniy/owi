@@ -2,6 +2,7 @@ import ActionTypes from "./WeatherActionTypes";
 
 const initialState = {
 	completeResultList: [],
+	locationList: [],
 	cityCode: "",
 	cityName: "",
 	temperature: {
@@ -79,6 +80,13 @@ const WeatherReducer = (state = initialState, action) => {
 				...state,
 				cityCode: action.payload.cityCode,
 				cityName: action.payload.cityName
+			};
+
+
+		case ActionTypes.ADD_CITY_TO_USER_LIST:
+			return {
+				...state,
+
 			};
 
 		default:

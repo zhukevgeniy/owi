@@ -1,31 +1,32 @@
 const User = require("../../config/sequelize")["User"];
 
-
 class UserService {
-	static async createUser(credentials) {
-		return await User.create(credentials);
+	static async createOrFindUser(credentials) {
+
+		const {name, ...rest} = credentials;
+
+		return await User.findOrCreate({
+			where: {
+				name
+			},
+			defaults: {
+				...rest
+			}
+		});
+	}
+
+	static async comparePasswords (user, password) {
+		const hashedPwd = await User.generateHash(password);
+		return await user.comparePasswords(hashedPwd)
+	}
+
+	static async getUserList() {
+		return await User.findAll();
 	}
 
 	static verifyToken(token) {
-		User.verifyJwt(token)
+		User.verifyJwt(token);
 	}
 }
-
-/*
-configureDBSync()
-	.then(() => {
-		return User.create({
-			name: "test",
-			email: "test@test.co",
-			isAdmin: false
-		});
-	})
-	.then(testUser => {
-		console.log(testUser)
-	})
-	.catch(err => console.error(err))
-
-*/
-
 
 module.exports = UserService;

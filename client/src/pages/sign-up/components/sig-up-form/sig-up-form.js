@@ -29,13 +29,13 @@ class SignUpForm extends Component {
 	render() {
 		return (
 			<Form onSubmit={this.onSignUp}>
-				{JSON.stringify(this.state)}
 				<FormGroup row>
 					<Label for="name-input" sm={2}>
-						Email
+						Name
 					</Label>
 					<Col sm={10}>
 						<Input
+							autoFocus
 							type="name"
 							name="name"
 							id="name-input"

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
 	const User = sequelize.define("User", {
@@ -10,29 +11,39 @@ module.exports = (sequelize, DataTypes) => {
 		},
 		name: DataTypes.STRING,
 		email: DataTypes.STRING,
+		password: {
+			type: DataTypes.STRING,
+			allowNull: false
+		},
 		isAdmin: DataTypes.BOOLEAN
 	});
 
-	/*User.associate = models => {
-		User.hasMany(models.providers);
-	};*/
+	User.beforeCreate(async user => {
+		try {
+			user.password = await bcrypt.hash(user.password, bcrypt.genSaltSync(8));
+		} catch (error) {
+			throw new Error();
+		}
+	});
+
+	User.generateHash = async password => {
+		return await bcrypt.hash(password, bcrypt.genSaltSync(8));
+	};
+
+	User.prototype.comparePasswords = async function(password) {
+		return await bcrypt.compare(password, this.password);
+	};
 
 	User.prototype.getJwt = function() {
 		const expirationTime = process.env.JWT_EXPIRATION;
-		const token = jwt.sign({ userID: this.id }, process.env.JWT_SECRET, {
+		const payload = {
+			userID: this.id,
+			privilege: this.isAdmin
+		};
+
+		return jwt.sign(payload, process.env.JWT_SECRET, {
 			expiresIn: expirationTime
 		});
-
-		return token;
-	};
-
-	User.verifyJwt = token => {
-		try {
-			const decoded = jwt.verify(token, process.env.JWT_SECRET);
-			console.log(decoded);
-		} catch (e) {
-			console.error(e);
-		}
 	};
 
 	return User;

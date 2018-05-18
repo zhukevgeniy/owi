@@ -3,7 +3,7 @@ class AuthService {
 		return "/signup";
 	}
 
-	static async signup({ name, email, pwd }) {
+	static async signup({ name, email, password }) {
 		const uri = this.getURI();
 
 		const request = new Request(uri, {
@@ -14,7 +14,7 @@ class AuthService {
 			body: JSON.stringify({
 				name,
 				email,
-				pwd
+				password
 			})
 		});
 

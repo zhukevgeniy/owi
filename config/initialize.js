@@ -6,10 +6,8 @@ const configureDBSync = require("./sync-db");
 const app = express();
 const port = process.env.SERVER_PORT || 5000;
 
-// configureDBSync();
-
+configureDBSync();
 configureExpress(app);
-
 configureRoutes(app);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

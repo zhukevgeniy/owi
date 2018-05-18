@@ -1,4 +1,5 @@
 const models = require("./sequelize");
+const createDummyData = require("./create-dummy-data");
 
 const configureDBSync = async () => {
 	try {
@@ -8,9 +9,11 @@ const configureDBSync = async () => {
 		console.error("Unable to connect to SQL database:", err);
 	}
 
-	// if (process.env.NODE_ENV === "development") {
-	return await models.sequelize.sync({alter: true, force: true});
-	// }
+	/*
+	* {alter: true, force: true}
+	* */
+	await models.sequelize.sync();
+	await createDummyData();
 };
 
 module.exports = configureDBSync;

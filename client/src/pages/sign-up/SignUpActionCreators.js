@@ -24,12 +24,12 @@ export const signUpFail = error => {
 	};
 };
 
-const redirectToHomePage = () => routerActions.push("/");
+const redirectToLoginPage = () => routerActions.push("/");
 
-export const singUpSuccessAndRedirect = jwtToken => {
+export const registerAndRedirect = jwtToken => {
 	return async dispatch => {
 		setToken(jwtToken);
-		dispatch(redirectToHomePage());
+		dispatch(redirectToLoginPage());
 
 		return dispatch(singUpSuccess(jwtToken));
 	};
@@ -45,6 +45,6 @@ export const signUpUser = ({ name, email, password }) => {
 
 		return error
 			? dispatch(signUpFail(error))
-			: dispatch(singUpSuccessAndRedirect(jwtToken));
+			: dispatch(registerAndRedirect(jwtToken));
 	};
 };

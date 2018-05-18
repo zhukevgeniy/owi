@@ -9,9 +9,6 @@ const configurePassportAuth = passport => {
 	};
 
 	passport.serializeUser(function(user, done) {
-
-		console.log(user)
-
 		done(null, user.id);
 	});
 

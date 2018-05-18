@@ -10,6 +10,7 @@ const apiRouter = new Router();
 apiRouter.route("/").get(ApiController.getStaticInfo);
 apiRouter.route("/hello").get(ApiController.sayHi);
 apiRouter.route("/users").get(UserController.getUserList);
+apiRouter.route("/users").delete(UserController.removeUser);
 
 
 apiRouter

@@ -1,17 +1,25 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {
+	Button,
 	ListGroupItem,
 	ListGroupItemHeading,
 	ListGroupItemText
 } from "reactstrap";
+import { connect } from "react-redux";
+import {removeUserByEmail} from "../../UsersActionCreators";
 
-const UserItem = ({ name, email, privilege }) => {
+const UserItem = (props) => {
+	const onRemoveUser = () => {
+		props.dispatch(removeUserByEmail(props.email))
+	};
+
 	return (
 		<ListGroupItem>
-			<ListGroupItemHeading>{name}</ListGroupItemHeading>
-			<ListGroupItemText>email: {email}</ListGroupItemText>
-			<ListGroupItemText>isAdmin: {privilege.toString()}</ListGroupItemText>
+			<ListGroupItemHeading>{props.name}</ListGroupItemHeading>
+			<ListGroupItemText>email: {props.email}</ListGroupItemText>
+			<ListGroupItemText>isAdmin: {props.privilege.toString()}</ListGroupItemText>
+			<Button onClick={onRemoveUser}>Remove item</Button>
 		</ListGroupItem>
 	);
 };
@@ -22,4 +30,7 @@ UserItem.propTypes = {
 	privilege: PropTypes.bool
 };
 
-export default UserItem;
+export default connect(state => ({
+	users: state.users,
+	router: state.router
+}))(UserItem);

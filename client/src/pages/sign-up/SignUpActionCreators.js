@@ -48,3 +48,17 @@ export const signUpUser = ({ name, email, password }) => {
 			: dispatch(registerAndRedirect(jwtToken));
 	};
 };
+
+export const signOutOff = () => {
+	return {
+		type: SignUpActionTypes.SIGN_OUT
+	};
+};
+
+export const signOut = () => {
+	return async dispatch => {
+		dispatch(routerActions.push("/sign-up"));
+		AuthService.signout();
+		return dispatch(signOutOff);
+	};
+};

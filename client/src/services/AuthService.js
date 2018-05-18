@@ -28,6 +28,10 @@ class AuthService {
 			return [error, null];
 		}
 	}
+
+	static signout() {
+		sessionStorage.removeItem("jwt_token")
+	}
 }
 
 export default AuthService;

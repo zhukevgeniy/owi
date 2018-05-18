@@ -36,3 +36,34 @@ export const getUserList = () => {
 			: dispatch(fetchUserListSuccess(userList));
 	};
 };
+
+export const removeUserFail = (error) => {
+	return {
+		type: UsersActionTypes.REMOVE_USER_FAIL,
+		payload: {
+			error
+		}
+	}
+};
+
+const removeUserSuccess = (email) => {
+	return {
+		type: UsersActionTypes.REMOVE_USER_SUCCESS,
+		payload: {
+			email
+		}
+	}
+};
+
+
+export const removeUserByEmail = (email) => {
+	return async dispatch => {
+
+		const error = await UserService.removeUserByEmail(email);
+
+
+		return error
+			? dispatch(removeUserFail(error))
+			: dispatch(removeUserSuccess(email));
+	}
+};

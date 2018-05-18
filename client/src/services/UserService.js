@@ -27,6 +27,37 @@ class UserService {
 			return [error, null];
 		}
 	}
+
+	static objectToQuerystring = obj => {
+		return Object.keys(obj).reduce(function(str, key, i) {
+			const delimiter = i === 0 ? "" : "&";
+			const val = encodeURIComponent(obj[encodeURIComponent(key)]);
+			return [str, delimiter, key, "=", val].join("");
+		}, "");
+	};
+
+	static async removeUserByEmail(email) {
+		const uri = this.getURI();
+		const headers = this.requestHeaders();
+
+		const request = new Request(uri, {
+			method: "DELETE",
+			headers: {
+				...headers,
+				"Content-Type": "application/x-www-form-urlencoded"
+			},
+			body: this.objectToQuerystring({email})
+		});
+
+		try {
+			const userRemoveRequest = await fetch(request);
+			const userRemoveStatus = await userRemoveRequest.json();
+
+			return null;
+		} catch (error) {
+			return error;
+		}
+	}
 }
 
 export default UserService;

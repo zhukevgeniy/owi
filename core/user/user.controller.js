@@ -25,7 +25,6 @@ const isCorrectPwd = async (user, password) => {
 };
 
 const signup = async (req, res) => {
-
 	const creds = {
 		name: req.body.name,
 		email: req.body.email,
@@ -62,7 +61,21 @@ const signup = async (req, res) => {
 	}
 };
 
+const removeUser = async (req, res) => {
+	const email = req.body.email;
+
+	console.log({email})
+
+	const removed = await UserService.removeByEmail(email);
+
+	res.json({
+		status: "ok",
+		removed
+	});
+};
+
 module.exports = {
+	removeUser,
 	getUserList,
 	signup
 };

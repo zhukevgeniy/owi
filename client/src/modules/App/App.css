@@ -6,6 +6,8 @@ body {
   font-family: "Open Sans", serif;
 }
 
+.cursor-pointer{cursor: pointer;}
+
 .wrapper {
   background: linear-gradient(to right, #e67e22, #e74c3c);
   height: 100vh;

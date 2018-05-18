@@ -31,6 +31,12 @@ const UsersReducer = (state = initialState, action) => {
 				list: state.list.concat(action.payload.userList)
 			};
 
+		case UsersActionTypes.REMOVE_USER_SUCCESS:
+			return {
+				...state,
+				list: state.list.filter(user => user.email !== action.payload.email)
+			};
+
 		default:
 			return state;
 	}

@@ -6,15 +6,14 @@ import {
 	ListGroupItemText
 } from "reactstrap";
 
-const LogItem = ({ userID, qTime, qLocationID, qUserIP, qResult, qStatus }) => {
+const LogItem = ({ userID, qTime, qLocationID, qUserIP, qStatus }) => {
 	return (
 		<ListGroupItem>
-			<ListGroupItemHeading>{userID}</ListGroupItemHeading>
-			<ListGroupItemText>{qTime}</ListGroupItemText>
-			<ListGroupItemText>{qLocationID}</ListGroupItemText>
-			<ListGroupItemText>{qUserIP}</ListGroupItemText>
-			<ListGroupItemText>{qResult}</ListGroupItemText>
-			<ListGroupItemText>{qStatus}</ListGroupItemText>
+			<ListGroupItemHeading>USER_ID: {userID}</ListGroupItemHeading>
+			<ListGroupItemText>QUERY_TIME: {qTime}</ListGroupItemText>
+			<ListGroupItemText>QUERY_LOCATION_ID: {qLocationID}</ListGroupItemText>
+			<ListGroupItemText>QUERY_USER_IP: {qUserIP}</ListGroupItemText>
+			<ListGroupItemText>QUERY_STATUS{qStatus}</ListGroupItemText>
 		</ListGroupItem>
 	);
 };

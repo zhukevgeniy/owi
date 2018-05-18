@@ -11,7 +11,6 @@ module.exports = (sequelize, DataTypes) => {
 		q_time: DataTypes.STRING,
 		q_loc_id: DataTypes.STRING,
 		q_user_ip: DataTypes.STRING,
-		q_res: DataTypes.STRING,
 		q_status: {
 			type: DataTypes.ENUM,
 			values: ["SUSPEND", "NO RESPONSE"]

@@ -14,13 +14,15 @@ class LogListContainer extends React.Component {
 		this.props.dispatch(getLogList());
 	}
 
-	static getDerivedStateFromProps(nextState, prevProps) {
+	static getDerivedStateFromProps(nextProps, prevProps) {
 		return {
-			list: nextState.logs.list
+			list: nextProps.logs.list
 		};
 	}
 
 	render() {
+
+
 		return (
 			<Container>
 				<LogList list={this.state.list} />

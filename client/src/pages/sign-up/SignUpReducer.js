@@ -31,6 +31,11 @@ const SignUpReducer = (state = initialState, action) => {
 				error: action.payload.error
 			};
 
+		case SignUpActionTypes.SIGN_OUT:
+			return {
+				...state
+			};
+
 		default:
 			return state;
 	}

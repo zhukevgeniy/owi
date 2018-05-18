@@ -12,8 +12,10 @@ import {
 	DropdownMenu,
 	DropdownItem
 } from "reactstrap";
+import {connect} from "react-redux";
+import {signOut} from "../../pages/sign-up/SignUpActionCreators";
 
-export default class Header extends React.Component {
+class Header extends React.Component {
 	state = {
 		isOpen: false
 	};
@@ -22,6 +24,10 @@ export default class Header extends React.Component {
 		this.setState({
 			isOpen: !this.state.isOpen
 		});
+	};
+
+	signOut = () => {
+		this.props.dispatch(signOut())
 	};
 
 	render() {
@@ -33,7 +39,12 @@ export default class Header extends React.Component {
 					<Collapse isOpen={this.state.isOpen} navbar>
 						<Nav className="ml-auto" navbar>
 							<NavItem>
-								<NavLink href="/components/">Components</NavLink>
+								<NavLink
+									className={"cursor-pointer"}
+									onClick={this.signOut}
+								>
+									Sign out
+								</NavLink>
 							</NavItem>
 							<NavItem>
 								<NavLink href="https://github.com/zhukevgeniy/owi">
@@ -47,3 +58,7 @@ export default class Header extends React.Component {
 		);
 	}
 }
+
+export default connect(state => ({
+	signup: state.signup
+}))(Header);

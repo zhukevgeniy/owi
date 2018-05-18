@@ -1,6 +1,4 @@
-const locationRoutes = require("./location.routes")
-
-
+const locationRoutes = require("./location.routes");
 
 module.exports = {
 	locationRoutes

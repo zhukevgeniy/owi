@@ -52,10 +52,10 @@ const AdminRoute = ({ componentPath, ...rest }) => {
 			{...rest}
 			render={props => {
 				const token = sessionStorage.getItem("jwt_token");
-
-				const isAdmin = getPrivilege(token);
-
+				
 				if (token) {
+					const isAdmin = getPrivilege(token);
+
 					if (isAdmin) {
 						return <Route {...rest} component={LoadableComponent} />;
 					} else {
@@ -77,7 +77,7 @@ const AdminRoute = ({ componentPath, ...rest }) => {
 export default (
 	<Switch>
 		<PrivateRoute exact path={"/"} componentPath={"./pages/home/home-page"} />
-		<LazyRoute
+		<AdminRoute
 			exact
 			path={"/locations"}
 			componentPath={"./pages/locations/locations-page"}

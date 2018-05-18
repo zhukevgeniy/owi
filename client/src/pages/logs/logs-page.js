@@ -1,16 +1,14 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
+import LogListContainer from "./components/log-list-container/log-list-container"
 
-class MyComponent extends Component {
-	render() {
+
+const LogsPage = () => {
 		return (
 			<div>
-				
+				<LogListContainer/>
 			</div>
 		);
-	}
-}
+};
 
-MyComponent.propTypes = {};
 
-export default MyComponent;
+export default LogsPage;

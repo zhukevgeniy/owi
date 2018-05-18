@@ -1,15 +1,10 @@
 class AuthService {
-
-	constructor(uri) {
-		this._uri = uri || process.env.REACT_APP_API_URI;
+	static getURI() {
+		return "/signup";
 	}
 
-	get uri() {
-		return this._uri;
-	}
-
-	static async login({name, email, pwd}) {
-		const uri = process.env.REACT_APP_API_URI;
+	static async signup({ name, email, pwd }) {
+		const uri = this.getURI();
 
 		const request = new Request(uri, {
 			method: "POST",
@@ -18,17 +13,20 @@ class AuthService {
 			}),
 			body: JSON.stringify({
 				name,
-				email, pwd
+				email,
+				pwd
 			})
 		});
 
 		try {
-			const response = await fetch(request);
-			return await response.json();
-		} catch (error) {
-			return error
-		}
+			const signUpFetchResponse = await fetch(request);
+			const credentialsData = await signUpFetchResponse.json();
+			const jwtToken = credentialsData.token;
 
+			return [null, jwtToken];
+		} catch (error) {
+			return [error, null];
+		}
 	}
 }
 

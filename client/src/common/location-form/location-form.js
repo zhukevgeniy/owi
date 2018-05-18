@@ -35,14 +35,15 @@ class LocationForm extends React.PureComponent {
 					c: opts.c
 				}
 			},
-			() => this.setCityCode({ cityCode: opts["l"], cityName: opts.name })
+			() => this.setCityCode({ cityCode: opts["uri_token"], cityName: opts.name })
 		);
 	};
 
 	setCityCode = city => this.props.dispatch(setCity(city));
 
 	getWeatherAutoComplete = async inputValue => {
-		this.props.dispatch(searchCityRequest(inputValue));
+		const isUserRequest = true;
+		this.props.dispatch(searchCityRequest(inputValue, isUserRequest));
 	};
 
 	render() {

@@ -29,7 +29,10 @@ export const getWeather = () => {
 	return async (dispatch, getState) => {
 		dispatch(fetchWeatherRequest());
 
+
+
 		const cityCode = getState().weather.cityCode;
+
 		const [error, weather] = await WeatherService.getWeatherByCity(cityCode);
 
 		return error
@@ -66,10 +69,11 @@ export const setErrorOnRequestCityList = error => {
 	};
 };
 
-export const searchCityRequest = userInputVal => {
+export const searchCityRequest = (userInputVal, isUserRequest = false) => {
 	return async dispatch => {
 		const [error, cityCompleteResultList] = await WeatherService.searchCity(
-			userInputVal
+			userInputVal,
+			isUserRequest
 		);
 		return error
 			? dispatch(setErrorOnRequestCityList(error))
@@ -83,12 +87,5 @@ export const addCityToUserList = (city) => {
 		payload: {
 			city
 		}
-	}
-};
-
-export const addCityToUserList = (city) => {
-	return async dispatch => {
-		dispatch()
-
 	}
 };

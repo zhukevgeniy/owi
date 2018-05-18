@@ -2,17 +2,20 @@ import React from "react";
 import PropTypes from "prop-types";
 import LocationItem from "../location-item/location-item";
 import { ListGroup } from "reactstrap";
+import withLocation from "../with-location/with-location";
 
-const LocationList = ({ list }) => {
+const LocationList = props => {
 	const renderLocationList = (item, key) => (
-		<LocationItem city={item.city} key={key} />
+		<LocationItem city={item.name} key={key} />
 	);
 
-	return <ListGroup>{list.map(renderLocationList)}</ListGroup>;
+	return <ListGroup>{props.list.map(renderLocationList)}</ListGroup>;
+
+
 };
 
 LocationList.propTypes = {
 	list: PropTypes.array
 };
 
-export default LocationList;
+export default withLocation(LocationList);

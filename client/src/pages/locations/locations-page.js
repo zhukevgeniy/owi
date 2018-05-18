@@ -1,24 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import { Col, Container, Row } from "reactstrap";
-import PropTypes from "prop-types";
 import LocationList from "./components/location-list/location-list";
 import LocationPanel from "./components/location-panel/location-panel";
 
 import "./location-page.css";
 
 const LocationPage = () => {
-	const list = [
-		{
-			city: "Milan"
-		},
-		{
-			city: "Monaco"
-		},
-		{
-			city: "St. Pit"
-		}
-	];
-
 	return (
 		<main>
 			<Container className={"location-container"}>
@@ -29,7 +16,7 @@ const LocationPage = () => {
 				</Row>
 				<Row>
 					<Col>
-						<LocationList list={list} />
+						<LocationList />
 					</Col>
 				</Row>
 			</Container>
@@ -37,6 +24,5 @@ const LocationPage = () => {
 	);
 };
 
-LocationPage.propTypes = {};
 
 export default LocationPage;

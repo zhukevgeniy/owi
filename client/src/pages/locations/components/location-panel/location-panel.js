@@ -12,9 +12,6 @@ class LocationPanel extends Component {
 	};
 
 	static getDerivedStateFromProps(nextProps, prevState) {
-
-		console.log(nextProps)
-
 		return {
 			cityList: nextProps.weather.completeResultList
 		};

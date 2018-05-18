@@ -37,19 +37,28 @@ class WeatherService {
 		}
 	}
 
-	static async searchCity(inputVal) {
+	static async searchCity(inputVal, isUserRequest) {
 		if (!inputVal) {
 			return [null, await []];
 		}
 
+		const uri = "http://autocomplete.wunderground.com/aq?query";
+		const url = `${uri}=${inputVal}`;
+
+		const localURI = process.env.REACT_APP_SERVER_API_URI;
+		const localURL = `${localURI}/location`;
+
 		try {
-			const autoCompleteResponse = await fetchJsonp(
-				`http://autocomplete.wunderground.com/aq?query=${inputVal}`,
-				{
-					jsonpCallback: "cb"
-				}
-			);
+			const autoCompleteResponse = isUserRequest
+				? await fetch(localURL)
+				: await fetchJsonp(url, {
+						jsonpCallback: "cb"
+				  });
+
 			const cityListResponse = await autoCompleteResponse.json();
+
+			console.log(cityListResponse);
+
 			const cityList = await cityListResponse["RESULTS"];
 			return [null, cityList];
 		} catch (error) {

@@ -3,14 +3,12 @@ import PropTypes from "prop-types";
 import {
 	ListGroupItem,
 	ListGroupItemHeading,
-	ListGroupItemText
 } from "reactstrap";
 
 const LocationItem = ({ city }) => {
 	return (
 		<ListGroupItem>
-			<ListGroupItemHeading>List group item heading</ListGroupItemHeading>
-			<ListGroupItemText>{city}</ListGroupItemText>
+			<ListGroupItemHeading>{city}</ListGroupItemHeading>
 		</ListGroupItem>
 	);
 };
